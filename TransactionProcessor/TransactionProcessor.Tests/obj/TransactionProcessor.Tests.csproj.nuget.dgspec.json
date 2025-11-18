@@ -10,7 +10,7 @@
         "projectUniqueName": "/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor.Tests/TransactionProcessor.Tests.csproj",
         "projectName": "TransactionProcessor.Tests",
         "projectPath": "/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor.Tests/TransactionProcessor.Tests.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/home/runner/work/nadeemmirza.github.io/.codeql-scratch/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -76,6 +76,16 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -91,7 +101,7 @@
         "projectUniqueName": "/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/TransactionProcessor.csproj",
         "projectName": "TransactionProcessor",
         "projectPath": "/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/TransactionProcessor.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/home/runner/work/nadeemmirza.github.io/.codeql-scratch/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -135,6 +145,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
