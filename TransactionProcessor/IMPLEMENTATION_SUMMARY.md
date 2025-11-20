@@ -28,13 +28,14 @@ var transactionTypeLookup = allTransactionTypes.ToDictionary(
 );
 
 // Process transactions using in-memory lookups
-foreach (var transaction in transactions)
-{
-    if (transactionTypeLookup.TryGetValue(transaction.TransactionType, out var typeInfo))
+// Skip transactions where the transaction type is not found
+var processed = transactions
+    .Where(t => transactionTypeLookup.ContainsKey(t.TransactionType))
+    .Select(t =>
     {
+        var typeInfo = transactionTypeLookup[t.TransactionType];
         // Use typeInfo.Description
-    }
-}
+    });
 ```
 
 **Benefits:**
@@ -113,9 +114,10 @@ dotnet test
 
 ## Test Results
 
-All 7 unit tests pass successfully:
+All 8 unit tests pass successfully:
 - ✅ Process valid transactions
-- ✅ Handle unknown transaction types
+- ✅ Skip transactions with unknown transaction types
+- ✅ Handle mixed valid and invalid transaction types
 - ✅ Handle empty lists
 - ✅ Handle null input correctly
 - ✅ Case-insensitive type matching
@@ -136,14 +138,16 @@ Ensures "DEP", "dep", and "Dep" all match correctly.
 ### 3. Async/Await
 All database operations use async methods for better scalability.
 
-### 4. TryGetValue Pattern
-Safe dictionary access with fallback for unknown types:
+### 4. Filter Pattern with Where
+Skip transactions with unknown types instead of processing with defaults:
 ```csharp
-if (typeLookup.TryGetValue(code, out var typeInfo))
-{
-    return typeInfo.Description;
-}
-return "Unknown Transaction Type";  // Safe fallback
+var processed = transactions
+    .Where(t => typeLookup.ContainsKey(t.TransactionType))
+    .Select(t => 
+    {
+        var typeInfo = typeLookup[t.TransactionType];
+        return new ProcessedTransaction { Description = typeInfo.Description };
+    });
 ```
 
 ### 5. LINQ for Transformation

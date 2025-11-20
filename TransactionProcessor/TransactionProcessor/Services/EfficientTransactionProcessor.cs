@@ -40,21 +40,24 @@ public class EfficientTransactionProcessor : ITransactionProcessor
 
         // Process each transaction using the in-memory dictionary
         // This is O(n) instead of O(n*m) where m is database query time
-        var processedTransactions = transactionList.Select(transaction =>
-        {
-            var hasTypeInfo = transactionTypeLookup.TryGetValue(transaction.TransactionType, out var typeInfo);
-            
-            return new ProcessedTransaction
+        // Skip transactions where the transaction type is not found in the lookup
+        var processedTransactions = transactionList
+            .Where(transaction => transactionTypeLookup.ContainsKey(transaction.TransactionType))
+            .Select(transaction =>
             {
-                Id = transaction.Id,
-                TransactionType = transaction.TransactionType,
-                TransactionDescription = hasTypeInfo && typeInfo != null ? typeInfo.Description : "Unknown Transaction Type",
-                TransactionDate = transaction.TransactionDate,
-                Amount = transaction.Amount,
-                Reference = transaction.Reference,
-                Category = hasTypeInfo && typeInfo != null ? typeInfo.Category : null
-            };
-        });
+                var typeInfo = transactionTypeLookup[transaction.TransactionType];
+                
+                return new ProcessedTransaction
+                {
+                    Id = transaction.Id,
+                    TransactionType = transaction.TransactionType,
+                    TransactionDescription = typeInfo.Description,
+                    TransactionDate = transaction.TransactionDate,
+                    Amount = transaction.Amount,
+                    Reference = transaction.Reference,
+                    Category = typeInfo.Category
+                };
+            });
 
         return processedTransactions;
     }

@@ -143,11 +143,14 @@ public async Task<IEnumerable<ProcessedTransaction>> ProcessTransactionsAsync(
     );
 
     // Step 3: Process transactions with O(1) lookups
-    var processedTransactions = transactionList.Select(transaction =>
-    {
-        transactionTypeLookup.TryGetValue(transaction.TransactionType, out var typeInfo);
-        // Create processed transaction...
-    });
+    // Skip transactions where the transaction type is not found
+    var processedTransactions = transactionList
+        .Where(transaction => transactionTypeLookup.ContainsKey(transaction.TransactionType))
+        .Select(transaction =>
+        {
+            var typeInfo = transactionTypeLookup[transaction.TransactionType];
+            // Create processed transaction...
+        });
 
     return processedTransactions;
 }
@@ -158,7 +161,7 @@ public async Task<IEnumerable<ProcessedTransaction>> ProcessTransactionsAsync(
 1. **Load Reference Data Once**: Fetch all transaction types in a single database call
 2. **Use Dictionary for Lookups**: Convert to `Dictionary<string, T>` for O(1) lookups
 3. **Case-Insensitive Comparison**: Use `StringComparer.OrdinalIgnoreCase` for robustness
-4. **Handle Missing Values**: Use `TryGetValue` and provide default values
+4. **Filter Invalid Transactions**: Use `Where()` to skip transactions with unknown types
 5. **Async/Await**: Use async methods for database operations
 6. **Dependency Injection**: Use interfaces for testability and flexibility
 

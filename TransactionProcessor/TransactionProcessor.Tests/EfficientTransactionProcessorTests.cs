@@ -31,7 +31,7 @@ public class EfficientTransactionProcessorTests
     }
 
     [Fact]
-    public async Task ProcessTransactionsAsync_WithUnknownTransactionType_ReturnsUnknownDescription()
+    public async Task ProcessTransactionsAsync_WithUnknownTransactionType_SkipsTransaction()
     {
         // Arrange
         var repository = new MockTransactionTypeRepository();
@@ -46,9 +46,7 @@ public class EfficientTransactionProcessorTests
         var resultList = result.ToList();
 
         // Assert
-        Assert.Single(resultList);
-        Assert.Equal("Unknown Transaction Type", resultList[0].TransactionDescription);
-        Assert.Null(resultList[0].Category);
+        Assert.Empty(resultList); // Transaction with unknown type should be skipped
     }
 
     [Fact]
@@ -158,5 +156,34 @@ public class EfficientTransactionProcessorTests
             r => Assert.Equal("Deposit", r.TransactionDescription));
         Assert.All(resultList.Where(r => r.Id % 2 == 1), 
             r => Assert.Equal("Withdrawal", r.TransactionDescription));
+    }
+
+    [Fact]
+    public async Task ProcessTransactionsAsync_WithMixedValidAndInvalidTypes_SkipsInvalidAndProcessesValid()
+    {
+        // Arrange
+        var repository = new MockTransactionTypeRepository();
+        var processor = new EfficientTransactionProcessor(repository);
+        var transactions = new List<Transaction>
+        {
+            new() { Id = 1, TransactionType = "DEP", TransactionDate = DateTime.Now, Amount = 100.00m },
+            new() { Id = 2, TransactionType = "INVALID", TransactionDate = DateTime.Now, Amount = 50.00m },
+            new() { Id = 3, TransactionType = "WTH", TransactionDate = DateTime.Now, Amount = 75.00m },
+            new() { Id = 4, TransactionType = "UNKNOWN", TransactionDate = DateTime.Now, Amount = 25.00m },
+            new() { Id = 5, TransactionType = "TRF", TransactionDate = DateTime.Now, Amount = 150.00m }
+        };
+
+        // Act
+        var result = await processor.ProcessTransactionsAsync(transactions);
+        var resultList = result.ToList();
+
+        // Assert
+        Assert.Equal(3, resultList.Count); // Only valid transactions should be processed
+        Assert.Equal(1, resultList[0].Id);
+        Assert.Equal("Deposit", resultList[0].TransactionDescription);
+        Assert.Equal(3, resultList[1].Id);
+        Assert.Equal("Withdrawal", resultList[1].TransactionDescription);
+        Assert.Equal(5, resultList[2].Id);
+        Assert.Equal("Transfer", resultList[2].TransactionDescription);
     }
 }
