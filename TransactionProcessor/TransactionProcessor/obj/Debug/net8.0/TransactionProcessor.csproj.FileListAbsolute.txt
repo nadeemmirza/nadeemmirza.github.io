@@ -1,0 +1,15 @@
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/bin/Debug/net8.0/TransactionProcessor
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/bin/Debug/net8.0/TransactionProcessor.deps.json
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/bin/Debug/net8.0/TransactionProcessor.runtimeconfig.json
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/bin/Debug/net8.0/TransactionProcessor.dll
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/bin/Debug/net8.0/TransactionProcessor.pdb
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.AssemblyInfoInputs.cache
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.AssemblyInfo.cs
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.csproj.CoreCompileInputs.cache
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.sourcelink.json
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.dll
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/refint/TransactionProcessor.dll
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.pdb
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/TransactionProcessor.genruntimeconfig.cache
+/home/runner/work/nadeemmirza.github.io/nadeemmirza.github.io/TransactionProcessor/TransactionProcessor/obj/Debug/net8.0/ref/TransactionProcessor.dll
